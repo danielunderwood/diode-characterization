@@ -3,6 +3,7 @@ Reads in data analysis files from labview for diode characterization
 """
 
 from argparse import ArgumentParser
+from sys import version_info
 from csv import reader
 from collections import defaultdict
 
@@ -36,11 +37,16 @@ def get_data(data_filename):
     csv_reader = reader(csv_content, delimiter=',', quotechar="'")
 
     # Skip header line
-    csv_reader.__next__()
+    # Check version_info to make appropriate call for python 2 vs 3
+    if version_info > (3,):
+        csv_reader.__next__()
+    else:
+        csv_reader.next()
 
     # Build return dictionary
     ret = defaultdict(list)
     for line in csv_reader:
+        # Skip line if empty
         if not line:
             continue
 
