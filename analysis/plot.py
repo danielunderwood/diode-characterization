@@ -24,11 +24,13 @@ if __name__ == '__main__':
     parser = ArgumentParser(description='Load and plot data file for diode characterization')
     parser.add_argument('resistance', metavar='RESISTANCE', type=float)
     parser.add_argument('--output', type=str)
+    parser.add_argument('--open-plot', dest='plot', action='store_true')
     parser.add_argument('filenames', nargs='*')
 
     filenames_arg = parser.parse_args().filenames
     resistance = parser.parse_args().resistance
     output_file = parser.parse_args().output
+    open_plot = parser.parse_args().plot
 
     # Load data from file
     currents = []
@@ -43,7 +45,10 @@ if __name__ == '__main__':
         filenames += [filename for datum in data['dut_voltage']]
 
     plot = plot_data(currents, voltages, filenames)
-    seaborn.plt.show()
+
+    # Open the plot if flag is used
+    if open_plot:
+        seaborn.plt.show()
 
     # Save the figure if we have an output
     if output_file:
