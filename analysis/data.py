@@ -53,6 +53,8 @@ def get_data(data_filename):
         for key, col in DATA_COL_KEYS.items():
             ret[key].append(float(line[col]))
 
+        ret['filename'].append(data_filename)
+
     return ret
 
 # If file is executed, get the data and print from filename argument

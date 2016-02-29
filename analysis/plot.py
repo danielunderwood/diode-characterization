@@ -3,21 +3,20 @@ import pandas
 from argparse import ArgumentParser
 from data import get_data
 
-def plot_data(currents, voltages):
+def plot_data(currents, voltages, filenames):
     """
     Plots the IV curve for one plot
 
-    @param currents: List of currents to plot
-    @param voltages: List of voltages to plot
+    @param currents: Currents to plot
+    @param voltages: Voltages to plot
+    @param filenames: Filenames to plot
+    @return Plot handle
     """
 
     # Gather data into pandas dataframe
-    data_frame = pandas.DataFrame()
+    data_frame = pandas.DataFrame({'Current': currents, 'Voltage': voltages, 'File': filenames})
 
-    data_frame['Voltage'] = voltages
-    data_frame['Current'] = currents
-
-    return seaborn.lmplot(x='Voltage', y='Current', data=data_frame, fit_reg=False)
+    return seaborn.lmplot(x='Voltage', y='Current', col='File', data=data_frame, fit_reg=False)
 
 if __name__ == '__main__':
 
@@ -32,10 +31,12 @@ if __name__ == '__main__':
     # Load data from file
     data = get_data(filename)
 
-    # Calculate currents
+    # Build data
     currents = [voltage / resistance for voltage in data['resistor1_voltage']]
     voltages = data['dut_voltage']
+    filenames = data['filename']
 
-    plot = plot_data(currents, voltages)
+    plot = plot_data(currents, voltages, filenames)
+    seaborn.plt.show()
     plot.savefig(filename + '_plot.pdf')
 
