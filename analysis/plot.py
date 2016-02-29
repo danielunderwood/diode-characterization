@@ -23,10 +23,12 @@ if __name__ == '__main__':
     # Set up parset to get filename
     parser = ArgumentParser(description='Load and plot data file for diode characterization')
     parser.add_argument('resistance', metavar='RESISTANCE', type=float)
+    parser.add_argument('--output', type=str)
     parser.add_argument('filenames', nargs='*')
 
     filenames_arg = parser.parse_args().filenames
     resistance = parser.parse_args().resistance
+    output_file = parser.parse_args().output
 
     # Load data from file
     currents = []
@@ -42,5 +44,8 @@ if __name__ == '__main__':
 
     plot = plot_data(currents, voltages, filenames)
     seaborn.plt.show()
-    plot.savefig(filename + '_plot.pdf')
+
+    # Save the figure if we have an output
+    if output_file:
+        plot.savefig(output_file)
 
