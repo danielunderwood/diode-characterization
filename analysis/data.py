@@ -14,7 +14,7 @@ LABVIEW_HEADER_END_TEXT = '***End_of_Header***'
 LABVIEW_NUM_HEADERS = 2
 
 # Dictionary for data rows
-DATA_COL_KEYS = {'index': 0, 'out_voltage': 1, 'resistor1_voltage': 2, 'dut_voltage': 2}
+DATA_COL_KEYS = {'out_voltage': 1, 'resistor1_voltage': 2, 'dut_voltage': 2}
 
 def get_data(data_filename):
     """

@@ -40,7 +40,7 @@ if __name__ == '__main__':
         voltages += [datum for datum in data['dut_voltage']]
 
         # Add filename for each point in data
-        filenames += [filename for datum in data['index']]
+        filenames += [filename for datum in data['dut_voltage']]
 
     plot = plot_data(currents, voltages, filenames)
     seaborn.plt.show()
