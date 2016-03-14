@@ -244,3 +244,6 @@ TSWLatexianTemp*
 
 # LaTeX Output
 *.pdf
+
+# PyCharm Files
+*.idea/
