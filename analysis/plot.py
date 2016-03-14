@@ -3,7 +3,8 @@ import pandas
 from argparse import ArgumentParser
 from data import get_data
 
-def plot_data(currents, voltages, filenames):
+
+def plot_data(currents, voltages, filenames=None):
     """
     Plots the IV curve for one plot
 
@@ -14,9 +15,12 @@ def plot_data(currents, voltages, filenames):
     """
 
     # Gather data into pandas dataframe
-    data_frame = pandas.DataFrame({'Current': currents, 'Voltage': voltages, 'File': filenames})
-
-    return seaborn.lmplot(x='Voltage', y='Current', col='File', data=data_frame, fit_reg=False, col_wrap=4)
+    if filenames:
+        data_frame = pandas.DataFrame({'Current': currents, 'Voltage': voltages, 'File': filenames})
+        return seaborn.lmplot(x='Voltage', y='Current', col='File', data=data_frame, fit_reg=False)
+    else:
+        data_frame = pandas.DataFrame({'Current': currents, 'Voltage': voltages})
+        return seaborn.lmplot(x='Voltage', y='Current', data=data_frame, fit_reg=False)
 
 if __name__ == '__main__':
 
