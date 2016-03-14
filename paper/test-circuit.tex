@@ -1,0 +1,38 @@
+\documentclass{standalone}
+\usepackage{circuitikz}
+
+\begin{document}
+	\begin{circuitikz}
+			% Output
+			\draw (0, -2)
+			to [american controlled voltage source=$\rm{AO}_0$] (0,0);
+			
+			% Test Resistor
+			\draw (0,0)
+			to [R=$\rm{R}$] (2,0);
+			
+			% DUT
+			\draw (2,0) -- (2,-0.75) -- (1.5,-0.75) -- (1.5,-1.25) -- (2.5,-1.25) -- (2.5,-1.25) -- (2.5,-0.75) -- (2,-.75) node[below] {\small{DUT}};
+			
+			% Back to output
+			\draw (2,-1.25) -- (2,-2) -- (0,-2);
+			
+			% Ground
+			\draw (0, -2)
+			to (0,-2.5) node[ground]{};
+			
+			% Resistor Input
+			\draw (0,0)
+			to [short, -o] (0,1);
+			\draw (2,0)
+			to [short, -o] (2,1);
+			\node[text=black] at (1,1) {$\rm{AI}_0$};
+			
+			% DUT Input
+			\draw (2,0)
+			to [short, -o] (3,0);
+			\draw (2,-2)
+			to [short, -o] (3,-2);
+			\node[text=black] at (3,-1) {$\rm{AI}_1$};
+	\end{circuitikz}
+\end{document}
