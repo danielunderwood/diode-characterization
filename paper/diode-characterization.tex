@@ -12,7 +12,7 @@
 
 \begin{abstract}
 
-The IV curves are measured for \textsc{1N4001} rectifier and \textsc{1N4148} zener diodes to determine their ideality factor, $n$. $n$ is measured to be $1.89619519 \pm 0.00000001$ for the \textsc{1N4001} diode and $3.19881700 \pm 0.00000002$ for the \textsc{1N4148} diode.
+The IV curves are measured for \textsc{1N4001} rectifier and \textsc{1N4148} zener diodes to determine their ideality factor, $n$. $n$ is measured to be $1.896 \pm 0.009$ for the \textsc{1N4001} diode and $3.20 \pm 0.01$ for the \textsc{1N4148} diode.
 
 \end{abstract}
 \maketitle
@@ -70,14 +70,14 @@ The ideality factor $n$ is the quantity of interest and has an uncertainty given
 \begin{equation} \label{eqn:sigma-n}
 \begin{split}
 \sigma_n^2 &= \left( \frac{\partial n}{\partial e} \sigma_e^2 \right)^2 + \left( \frac{\partial n}{\partial \alpha} \sigma_{\alpha}^2 \right)^2 + \left( \frac{\partial n}{\partial k_{\rm{B}}} \sigma_{k_{\rm{B}}} \right)^2 + \left( \frac{\partial n}{\partial T} \sigma_T \right)^2 \\
-&= \left( \alpha k_{\rm{B}} T \right)^{-2} \sigma_e^2 + e \left[  \left( \frac{\sigma_{\alpha}}{\alpha} \right)^2 + \left( \frac{\sigma_{k_{\rm{B}}}}{k_{\rm{B}}} \right)^2 + \left( \frac{\sigma_T}{T} \right)^2  \right]
+&= \left( \alpha k_{\rm{B}} T \right)^{-2} \left\{ \sigma_e^2 + e^2 \left[  \left( \frac{\sigma_{\alpha}}{\alpha} \right)^2 + \left( \frac{\sigma_{k_{\rm{B}}}}{k_{\rm{B}}} \right)^2 + \left( \frac{\sigma_T}{T} \right)^2  \right] \right\}
 \end{split}
 \end{equation}
 
 
 \section{Results}
 
-The model given by \cref{eqn:simple-fit} was fitted to the data collected and yielded values of $I_0$ as $9.2 \pm 0.6 \times 10^{-9}\:\rm{A}$ and $2.00 \pm 0.06 \times 10^{-6}\:\rm{A}$ and values of $\alpha$ as $2.04 \pm 0.09\:\rm{V}^{-1}$ and $1.21 \pm 0.04\:\rm{V}^{-1}$ for the \textsc{1N4001} and \textsc{1N4148} diodes, respectively. Plots of each diodes' data and fitted function are given in \cref{fig:1N4001,fig:1N4148}. These values of $\alpha$ correspond to values of $n$ of $1.89619519 \pm 0.00000001$ and $3.19881700 \pm 0.00000002$ using the uncertainty defined by \cref{eqn:sigma-n} With $T$ taken to be a constant and $\sigma_T = 0$. Even in the case of $\sigma_T = 1000$, the factor is essentially zero due to the elctron charge term, resulting in nearly the same uncertanties. Fundamental constant values used are those given by \cite{NIST2014}. The ideality factor value of approximately 2 in the \textsc{1N4001} diode suggests a dominance of carrier recombination currents \cite{Shockley1952}. The ideality factor of approximately 3 for the \textsc{1N4148} diode suggest a similar, but different method of charge transport; evidence of ideality factors of approximately 3 were not found and the cause of this ideality factor could be a point of future experiments.
+The model given by \cref{eqn:simple-fit} was fitted to the data collected and yielded values of $I_0$ as $9.2 \pm 0.6 \times 10^{-9}\:\rm{A}$ and $2.00 \pm 0.06 \times 10^{-6}\:\rm{A}$ and values of $\alpha$ as $2.04 \pm 0.09\:\rm{V}^{-1}$ and $1.21 \pm 0.04\:\rm{V}^{-1}$ for the \textsc{1N4001} and \textsc{1N4148} diodes, respectively. Plots of each diodes' data and fitted function are given in \cref{fig:1N4001,fig:1N4148}. These values of $\alpha$ correspond to values of $n$ of $1.896 \pm 0.009$ and $3.20 \pm 0.01$ using the uncertainty defined by \cref{eqn:sigma-n} With $T$ taken to be a constant and $\sigma_T = 0$. Taking into account the uncertainty $\sigma_T$, the uncertainty on $n$ becomes roughly one order of magnitude less than $\sigma_T$. For example, a value of $\sigma_T$ on the order of $10^2$ will lead to $\sigma_n$ on the order of $10^1$. Provided that the error in temperature is on the order of $10^0$, taking $n$ to have a meaning by an approximate integer is not heavily affected. $\sigma_T$ on the order of $10^0$ is a reasonable guess as we would not expect the temperature to be more than $10s$ of Kelvin away from the assumed temperature of $300\:\rm{K}$. Fundamental constant values used are those given by \cite{NIST2014}. The ideality factor value of approximately 2 in the \textsc{1N4001} diode suggests a dominance of carrier recombination currents \cite{Shockley1952}. The ideality factor of approximately 3 for the \textsc{1N4148} diode suggest a similar, but different method of charge transport; evidence of ideality factors of approximately 3 were not found and the cause of this ideality factor could be a point of future experiments.
 
 These fits result in respective values of $\chi^2_{\rm{red}}$ of $0.11$ and $0.06$, which are quite poor, but plots in \cref{fig:1N4001,fig:1N4148} show that the fits are not as bad as may be indicated by the $\chi^2_{\rm{red}}$ values. The fit is very close for the \textsc{1N4001} diode and is close-fitting within the low-curvature areas of the \textsc{1N4148} data.The fit is well within the large error bars for both diodes.
 

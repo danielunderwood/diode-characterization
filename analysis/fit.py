@@ -86,10 +86,11 @@ def n_from_alpha(alpha, sigma_alpha):
 
     # Calculate the error for sigma
     sigma_n = 0
-    sigma_n += (SIGMA_ELECTRON_CHARGE / (alpha * BOLTZMANN_CONSTANT * TEMPERATURE)) ** 2
-    sigma_n += ELECTRON_CHARGE * (sigma_alpha / alpha) ** 2
-    sigma_n += ELECTRON_CHARGE * (SIGMA_BOLTZMANN / BOLTZMANN_CONSTANT) ** 2
-    sigma_n += ELECTRON_CHARGE * (SIGMA_TEMPERATURE / TEMPERATURE) ** 2
+    sigma_n += (SIGMA_ELECTRON_CHARGE) ** 2
+    sigma_n += (ELECTRON_CHARGE * sigma_alpha / alpha) ** 2
+    sigma_n += (ELECTRON_CHARGE * SIGMA_BOLTZMANN / BOLTZMANN_CONSTANT) ** 2
+    sigma_n += (ELECTRON_CHARGE * SIGMA_TEMPERATURE / TEMPERATURE) ** 2
+    sigma_n *= (alpha * BOLTZMANN_CONSTANT * TEMPERATURE) ** -2
     sigma_n = sqrt(sigma_n)
 
     return (n, sigma_n)
