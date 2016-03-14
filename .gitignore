@@ -241,3 +241,6 @@ TSWLatexianTemp*
 
 # KBibTeX
 *~*
+
+# LaTeX Output
+*.pdf
