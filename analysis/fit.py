@@ -159,9 +159,9 @@ if __name__ == '__main__':
     reduced_chi_squared = chi_squared / degrees_of_freedom
 
     # Print results
-    print('I0: %E +/- %E' % (I0, sigma_I0))
-    print('alpha: %E +/- %E' % (alpha, sigma_alpha))
-    print('n: %E +/- %E' % (n, sigma_n))
+    print('I0: %.10E +/- %.10E' % (I0, sigma_I0))
+    print('alpha: %.10E +/- %.10E' % (alpha, sigma_alpha))
+    print('n: %.10E +/- %.10E' % (n, sigma_n))
     print('Chi Squared: %f' % chi_squared)
     print('Reduced Chi Squared: %f' % reduced_chi_squared)
 
