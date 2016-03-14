@@ -23,11 +23,15 @@ from scipy.special import lambertw
 
 
 # Constants (SI Units)
-ELECTRON_CHARGE = 1.60217662 * 10 ** -19
+ELECTRON_CHARGE = 1.602176608 * 10 ** -19
+SIGMA_ELECTRON_CHARGE = 9.8 * 10 ** -28
+
 BOLTZMANN_CONSTANT = 1.38064852 * 10 ** -23
+SIGMA_BOLTZMANN =  7.9 * 10 ** -30
 
 # Temperature (Kelvin) to use for simple_model. Somewhere around room temperature
 TEMPERATURE = 300
+SIGMA_TEMPERATURE = 0
 
 
 def simple_model(V, I0, alpha):
@@ -69,15 +73,26 @@ def fit_data(data, errors, model=simple_model):
     return curve_fit(model, xdata=data[0], ydata=data[1], sigma=errors, p0=[0, 10], maxfev=1000)
 
 
-def n_from_alpha(alpha):
+def n_from_alpha(alpha, sigma_alpha):
     """
     Gets the value of n from alpha
 
     @param alpha: Fit parameter alpha for simple_model
-    @return: Float value of n
+    @param sigma_alpha: Error for alpha from simple model
+    @return: Tuple of float value of n and the uncertainty
     """
 
-    return ELECTRON_CHARGE / (alpha * BOLTZMANN_CONSTANT * TEMPERATURE)
+    n = ELECTRON_CHARGE / (alpha * BOLTZMANN_CONSTANT * TEMPERATURE)
+
+    # Calculate the error for sigma
+    sigma_n = 0
+    sigma_n += (SIGMA_ELECTRON_CHARGE / (alpha * BOLTZMANN_CONSTANT * TEMPERATURE)) ** 2
+    sigma_n += ELECTRON_CHARGE * (sigma_alpha / alpha) ** 2
+    sigma_n += ELECTRON_CHARGE * (SIGMA_BOLTZMANN / BOLTZMANN_CONSTANT) ** 2
+    sigma_n += ELECTRON_CHARGE * (SIGMA_TEMPERATURE / TEMPERATURE) ** 2
+    sigma_n = sqrt(sigma_n)
+
+    return (n, sigma_n)
 
 
 def get_current_errors(V, R, sigma_V, sigma_R):
@@ -131,7 +146,7 @@ if __name__ == '__main__':
     sigma_alpha = sigmas[1]
 
     # Get n
-    n = n_from_alpha(alpha)
+    n, sigma_n = n_from_alpha(alpha, sigma_alpha)
 
     # Create points for data to plot
     fit_V = linspace(min(voltages), max(voltages), 1000)
@@ -146,7 +161,7 @@ if __name__ == '__main__':
     # Print results
     print('I0: %E +/- %E' % (I0, sigma_I0))
     print('alpha: %E +/- %E' % (alpha, sigma_alpha))
-    print('n: %E (%d)' % (n, round(n)))
+    print('n: %E +/- %E' % (n, sigma_n))
     print('Chi Squared: %f' % chi_squared)
     print('Reduced Chi Squared: %f' % reduced_chi_squared)
 
