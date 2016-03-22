@@ -7,4 +7,4 @@ __NOTE:__ This repository contains code for data analysis and thus is poorly str
 [Download Latest PDF Build](https://www.sharelatex.com/github/repos/danielunderwood/diode-characterization/builds/latest/output.pdf)
 
 
-Characterization of IV curves and idealiality factors of diodes.
+Characterization of IV curves and ideality factors of diodes.
