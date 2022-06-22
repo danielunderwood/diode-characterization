@@ -1,6 +1,6 @@
 cycler==0.10.0
 matplotlib==1.5.1
-numpy==1.21.0
+numpy==1.22.0
 pandas==0.17.1
 pyparsing==2.1.0
 python-dateutil==2.4.2
